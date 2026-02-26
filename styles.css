@@ -74,6 +74,26 @@ body {
   opacity: 0.95;
 }
 
+.banner-by {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  opacity: 0.9;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35em;
+}
+
+.banner-salo-logo {
+  height: 1.4em;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 /* Sections */
 section {
   max-width: 720px;
@@ -259,12 +279,12 @@ p {
   }
 
   .gallery-side--left .gallery-float-item:nth-child(1) {
-    top: 28vh;
+    top: 20vh;
     z-index: 1;
   }
 
   .gallery-side--left .gallery-float-item:nth-child(2) {
-    top: 48vh;
+    top: 50vh;
     z-index: 3;
     transform: translateX(-20px) scale(0.92);
   }
@@ -274,7 +294,7 @@ p {
   }
 
   .gallery-side--left .gallery-float-item:nth-child(3) {
-    top: 68vh;
+    top: 20vh;
     z-index: 2;
     transform: translateX(-30px) scale(0.92);
   }
@@ -294,7 +314,7 @@ p {
   }
 
   .gallery-side--right .gallery-float-item:nth-child(1) {
-    top: 32vh;
+    top: 25vh;
     z-index: 2;
     transform: translateX(15px) scale(0.92);
   }
@@ -304,7 +324,7 @@ p {
   }
 
   .gallery-side--right .gallery-float-item:nth-child(2) {
-    top: 52vh;
+    top: 50vh;
     z-index: 1;
     transform: translateX(25px) scale(0.92);
   }
@@ -314,7 +334,7 @@ p {
   }
 
   .gallery-side--right .gallery-float-item:nth-child(3) {
-    top: 72vh;
+    top: 25vh;
     z-index: 3;
     transform: translateX(30px) scale(0.92);
   }
