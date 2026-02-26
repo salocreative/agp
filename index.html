@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agency Grand Prix — 2026 Season</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-elevated: #141414;
+      --text: #ffffff;
+      --text-muted: #a3a3a3;
+      --accent: #e5e5e5;
+      --font: 'Fustat', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Banner */
+    .banner {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .banner-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.85) 60%, var(--bg) 100%);
+      z-index: 1;
+    }
+
+    .banner-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .banner-logo {
+      max-width: min(70vw, 520px);
+      height: auto;
+      display: block;
+      margin: 0 auto 2rem;
+    }
+
+    .banner-tagline {
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: 0.95;
+    }
+
+    /* Sections */
+    section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    h1, h2 {
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(1.25rem, 3vw, 1.5rem);
+      margin-bottom: 1rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+      color: var(--text);
+      font-size: 1.0625rem;
+    }
+
+    .intro {
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 600;
+      margin-bottom: 2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .dates {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+
+    .dates li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 1.125rem;
+      font-weight: 500;
+    }
+
+    .dates li:last-child {
+      border-bottom: none;
+    }
+
+    .awards {
+      margin-top: 2rem;
+    }
+
+    .awards h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .awards p {
+      margin-bottom: 1.5rem;
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+    }
+
+    .awards .award-item {
+      margin-bottom: 1.75rem;
+    }
+
+    .closing {
+      text-align: center;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 600;
+      margin-top: 3rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Page layout: content + floating gallery (desktop) / swipeable gallery (mobile) */
+    .page-wrap {
+      padding: 0 1rem;
+      position: relative;
+      overflow-x: clip;
+    }
+
+    @media (min-width: 1024px) {
+      .page-wrap {
+        padding: 0 2rem;
+        overflow: visible;
+      }
+
+      main {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      .gallery-side {
+        position: absolute;
+        top: 0;
+        width: 22%;
+        max-width: 280px;
+        height: 100%;
+        pointer-events: none;
+        overflow: visible;
+      }
+
+      .gallery-side--left {
+        left: -1rem;
+      }
+
+      .gallery-side--right {
+        right: -1rem;
+        left: auto;
+      }
+
+      .gallery-float-item {
+        position: absolute;
+        width: 100%;
+        opacity: 0;
+        transition: opacity 0.7s ease-out;
+        will-change: opacity;
+      }
+
+      .gallery-float-item.visible {
+        opacity: 1;
+      }
+
+      .gallery-float-item img {
+        width: 100%;
+        max-width: 260px;
+        height: auto;
+        border-radius: 10px;
+        object-fit: cover;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        display: block;
+        animation: gallery-float 8s ease-in-out infinite;
+      }
+
+      .gallery-float-item:nth-child(2) img {
+        animation-delay: -2.5s;
+      }
+
+      .gallery-float-item:nth-child(3) img {
+        animation-delay: -5s;
+      }
+
+      .gallery-side--left .gallery-float-item {
+        right: 0;
+        left: auto;
+        transform: translateX(-35%);
+      }
+
+      .gallery-side--left .gallery-float-item:nth-child(1) {
+        top: 18%;
+        z-index: 1;
+      }
+
+      .gallery-side--left .gallery-float-item:nth-child(2) {
+        top: 48%;
+        z-index: 3;
+        transform: translateX(-25%);
+      }
+
+      .gallery-side--left .gallery-float-item:nth-child(3) {
+        top: 78%;
+        z-index: 2;
+        transform: translateX(-40%);
+      }
+
+      .gallery-side--right .gallery-float-item {
+        left: 0;
+        right: auto;
+        transform: translateX(35%);
+      }
+
+      .gallery-side--right .gallery-float-item:nth-child(1) {
+        top: 25%;
+        z-index: 2;
+        transform: translateX(30%);
+      }
+
+      .gallery-side--right .gallery-float-item:nth-child(2) {
+        top: 52%;
+        z-index: 1;
+        transform: translateX(38%);
+      }
+
+      .gallery-side--right .gallery-float-item:nth-child(3) {
+        top: 82%;
+        z-index: 3;
+        transform: translateX(28%);
+      }
+
+      @keyframes gallery-float {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+
+      .gallery-mobile {
+        display: none;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      .gallery-side {
+        display: none;
+      }
+
+      .gallery-mobile {
+        display: block;
+        width: 100%;
+        margin: 2rem 0 4rem;
+        padding-bottom: 1rem;
+      }
+
+      .gallery-mobile-track {
+        display: flex;
+        gap: 1rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 1.5rem;
+        scrollbar-width: none;
+      }
+
+      .gallery-mobile-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      .gallery-mobile-slide {
+        flex: 0 0 85%;
+        max-width: 320px;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+      }
+
+      .gallery-mobile-slide img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        border-radius: 8px;
+        display: block;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    /* Scroll reveal: faded → full opacity (all text below banner) */
+    .scroll-reveal {
+      opacity: 0.35;
+      transition: opacity 0.6s ease;
+    }
+
+    .scroll-reveal.in-view {
+      opacity: 1;
+    }
+
+    /* Video fallback when no src */
+    .banner-video[src=""],
+    .banner-video:not([src]) {
+      display: none;
+    }
+
+    .banner-fallback {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 50% 40%, #1a1a1a 0%, var(--bg) 70%);
+      display: none;
+    }
+
+    .banner-video[src=""] ~ .banner-fallback,
+    .banner-video:not([src]) ~ .banner-fallback {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header class="banner">
+    <!-- Replace src with your own video file for the background -->
+    <video class="banner-video" autoplay muted loop playsinline src="assets/AGP-Banner-720.mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="banner-fallback" aria-hidden="true"></div>
+    <div class="banner-overlay"></div>
+    <div class="banner-content">
+      <img class="banner-logo" src="assets/AGP-Logo-Light.png" alt="Agency Grand Prix" width="520" height="auto">
+      <p class="banner-tagline">Bigger. Better. Bolder. Faster.</p>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <aside class="gallery-side gallery-side--left" aria-hidden="true">
+      <div class="gallery-float-item" data-peak="0.18">
+        <img src="assets/gallery/left-1.jpg" alt="">
+      </div>
+      <div class="gallery-float-item" data-peak="0.48">
+        <img src="assets/gallery/left-2.jpg" alt="">
+      </div>
+      <div class="gallery-float-item" data-peak="0.78">
+        <img src="assets/gallery/left-3.jpg" alt="">
+      </div>
+    </aside>
+
+  <main>
+    <section class="scroll-reveal">
+      <h1>The 2026 AGP Season is open.</h1>
+      <p class="intro">Following the success of last year's inaugural Agency Grand Prix, we're coming back bigger, better, bolder and faster.</p>
+      <p>Over four races, nine agency teams, will battle it out to see which team will raise the Grand Prix Laurels and be crowned The 2026 Agency Grand Prix Champions.</p>
+      <p>Two indoor technical races and two outdoor sprints, will show us who truly has the drive to lead the pack.</p>
+      <p>This is adrenaline-fuelled fun, team camaraderie, and inter-agency competition at its best.</p>
+    </section>
+
+    <section class="scroll-reveal">
+      <h2>Race dates</h2>
+      <ul class="dates">
+        <li>Wednesday March 25th @ 6pm</li>
+        <li>Wednesday April 22nd @ 6pm</li>
+        <li>Wednesday May 20th @ 6pm</li>
+        <li>Wednesday June 17th @ 2pm</li>
+      </ul>
+    </section>
+
+    <section class="scroll-reveal">
+      <h2>Prizes</h2>
+      <p>Alongside the Team Championship, there'll be prizes for the overall Driving Champion as well as:</p>
+      <div class="awards">
+        <div class="award-item">
+          <h3>The Disruptor Award</h3>
+          <p>To the driver who made the most overtakes during the series.</p>
+        </div>
+        <div class="award-item">
+          <h3>The Pitch-Perfect Pit</h3>
+          <p>To the team with the fastest driver-swap/pit-stop time.</p>
+        </div>
+        <div class="award-item">
+          <h3>The "Under the Radar" Trophy</h3>
+          <p>For the most consistent driver who never placed 1st but always finished Top 5.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="scroll-reveal">
+      <p class="closing">Welcome to the Agency Grand Prix.</p>
+    </section>
+
+    <div class="gallery-mobile" aria-label="Event gallery">
+      <div class="gallery-mobile-track">
+        <div class="gallery-mobile-slide"><img src="assets/gallery/left-1.jpg" alt=""></div>
+        <div class="gallery-mobile-slide"><img src="assets/gallery/left-2.jpg" alt=""></div>
+        <div class="gallery-mobile-slide"><img src="assets/gallery/left-3.jpg" alt=""></div>
+        <div class="gallery-mobile-slide"><img src="assets/gallery/right-1.jpg" alt=""></div>
+        <div class="gallery-mobile-slide"><img src="assets/gallery/right-2.jpg" alt=""></div>
+        <div class="gallery-mobile-slide"><img src="assets/gallery/right-3.jpg" alt=""></div>
+      </div>
+    </div>
+  </main>
+
+    <aside class="gallery-side gallery-side--right" aria-hidden="true">
+      <div class="gallery-float-item" data-peak="0.25">
+        <img src="assets/gallery/right-1.jpg" alt="">
+      </div>
+      <div class="gallery-float-item" data-peak="0.52">
+        <img src="assets/gallery/right-2.jpg" alt="">
+      </div>
+      <div class="gallery-float-item" data-peak="0.82">
+        <img src="assets/gallery/right-3.jpg" alt="">
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    (function () {
+      const revealSections = document.querySelectorAll('.scroll-reveal');
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          }
+        });
+      }, { rootMargin: '-10% 0px -15% 0px', threshold: 0 });
+      revealSections.forEach((section) => sectionObserver.observe(section));
+
+      // Floating gallery: fade in/out based on scroll (desktop)
+      const floatItems = document.querySelectorAll('.gallery-float-item');
+      if (!floatItems.length) return;
+
+      const pageWrap = document.querySelector('.page-wrap');
+      if (!pageWrap) return;
+
+      function updateFloatVisibility() {
+        const vh = window.innerHeight;
+        const scrollY = window.scrollY;
+        const docHeight = Math.max(
+          document.body.scrollHeight,
+          pageWrap.offsetHeight
+        );
+        const scrollRange = Math.max(0, docHeight - vh);
+        const scrollProgress = scrollRange > 0 ? scrollY / scrollRange : 0;
+
+        floatItems.forEach((el) => {
+          const peak = parseFloat(el.dataset.peak) ?? 0.5;
+          const dist = Math.abs(scrollProgress - peak);
+          const opacity = Math.max(0, 1 - dist * 2.2);
+          el.classList.toggle('visible', opacity > 0.12);
+        });
+      }
+
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            updateFloatVisibility();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+      updateFloatVisibility();
+    })();
+  </script>
+</body>
+</html>
