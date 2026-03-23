@@ -94,6 +94,26 @@ body {
   vertical-align: middle;
 }
 
+.banner-sponsor {
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+}
+
+.banner-sponsor-logo {
+  height: 1.2em;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+  opacity: 0.92;
+}
+
 /* Sections */
 section {
   max-width: 720px;
@@ -258,6 +278,30 @@ p {
 
 .contact-section a:hover {
   color: var(--accent);
+}
+
+.site-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.75rem 1.5rem 2.25rem;
+  text-align: center;
+  position: relative;
+  z-index: 3;
+}
+
+.footer-sponsor {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.footer-sponsor-logo {
+  height: 1.2em;
+  width: auto;
+  opacity: 0.9;
 }
 
 /* Page layout: content + floating gallery (desktop) / swipeable gallery (mobile) */
