@@ -261,6 +261,61 @@ p {
   text-align: right;
 }
 
+.sponsor-section {
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.sponsor-card {
+  margin-top: 1rem;
+  padding: 1.25rem 1.25rem 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.sponsor-logo-link {
+  display: inline-block;
+  margin-bottom: 0.9rem;
+}
+
+.sponsor-feature-logo {
+  width: min(100%, 220px);
+  max-width: 220px;
+  height: auto;
+  max-height: 34px;
+  opacity: 0.95;
+}
+
+.sponsor-strapline {
+  margin-bottom: 0.75rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.sponsor-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.35rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.sponsor-cta:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.55);
+  color: var(--accent);
+}
+
 .contact-section {
   text-align: center;
   padding-top: 2rem;
