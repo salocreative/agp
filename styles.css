@@ -116,6 +116,40 @@ body {
   opacity: 0.92;
 }
 
+.banner-major-prize {
+  margin-top: 1.15rem;
+  margin-bottom: 0.25rem;
+  font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.banner-cta {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary--banner {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.btn-primary--banner:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.btn-linkedin {
+  gap: 0.45rem;
+}
+
+.btn-linkedin-icon {
+  width: 1em;
+  height: 1em;
+}
+
 /* Sections */
 section {
   max-width: 720px;
@@ -168,6 +202,51 @@ p {
 
 .dates li:last-child {
   border-bottom: none;
+}
+
+.register-cta {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.15rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.55);
+  transform: translateY(-1px);
+}
+
+.register-note {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+@media (max-width: 640px) {
+  .register-cta {
+    align-items: stretch;
+  }
+
+  .register-cta .btn-primary {
+    width: 100%;
+  }
 }
 
 .awards {
@@ -361,6 +440,21 @@ p {
   max-width: 170px;
   max-height: 26px;
   opacity: 0.9;
+}
+
+.footer-social {
+  margin-top: 0.85rem;
+}
+
+.footer-social a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  font-size: 0.9rem;
+}
+
+.footer-social a:hover {
+  color: var(--accent);
 }
 
 /* Page layout: content + floating gallery (desktop) / swipeable gallery (mobile) */
