@@ -65,6 +65,16 @@ body {
   margin: 0 auto 2rem;
 }
 
+.banner-kicker {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.9;
+  margin-bottom: 1.25rem;
+}
+
 .banner-tagline {
   font-size: clamp(1.25rem, 3vw, 1.75rem);
   font-weight: 500;
@@ -222,8 +232,11 @@ p {
   background: rgba(255, 255, 255, 0.08);
   color: var(--text);
   text-decoration: none;
+  font-family: inherit;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.02em;
+  cursor: pointer;
   transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -359,6 +372,34 @@ p {
   flex-shrink: 0;
 }
 
+.agency-logo-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.agency-logo {
+  width: 100%;
+  height: 2.6rem;
+  object-fit: contain;
+  padding: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .agency-logo-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.interest-section {
+  padding-bottom: 2rem;
+}
+
 .sponsor-section {
   padding-top: 1.5rem;
   padding-bottom: 2rem;
@@ -463,6 +504,10 @@ p {
 
 .footer-social {
   margin-top: 0.85rem;
+}
+
+.footer-social:first-child {
+  margin-top: 0;
 }
 
 .footer-social a {
